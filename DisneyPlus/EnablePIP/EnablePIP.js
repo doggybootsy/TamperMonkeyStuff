@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Enable PIP
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/doggybootsy/TamperMonkeyStuff
 // @version      1
 // @description  Allows the ability to have PIP again
 // @author       Doggybootsy#0001
