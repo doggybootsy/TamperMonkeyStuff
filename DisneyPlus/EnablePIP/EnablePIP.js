@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Enable PIP
-// @namespace    https://github.com/doggybootsy/TamperMonkeyStuff
-// @version      0.1
+// @namespace    http://tampermonkey.net/
+// @version      1
 // @description  Allows the ability to have PIP again
 // @author       Doggybootsy#0001
 // @match        *://www.disneyplus.com/video/*
