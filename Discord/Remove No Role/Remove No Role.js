@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Remove No Role
+// @name         Copy Usernames
 // @namespace    https://github.com/doggybootsy/TamperMonkeyStuff
 // @version      1
-// @description  Remove "NO ROLE" from user popouts
+// @description  Copy Usernames from user popouts or modals
 // @author       You
 // @match        *://discord.com/channels/*
 // @icon         https://www.google.com/s2/favicons?domain=discord.com
@@ -15,13 +15,35 @@
     const callback = function(mutationsList, observer) {
         for(const mutation of mutationsList) {
             if (mutation.type === 'childList') {
-                if (document.body.contains(document.querySelector('.root-3-B5F3:empty'))) {
-                    document.querySelector('.root-3-B5F3:empty').previousSibling.setAttribute('style','display: none !important')
-                    document.querySelector('.root-3-B5F3:empty').setAttribute('style','display: none !important')
+                if (document.querySelector('.nameTag-m8r81H')) {
+                    document.querySelector('.nameTag-m8r81H').addEventListener("click", () => {
+                        if(document.querySelector('.nameTag-m8r81H')){
+                            const str = document.querySelector('.nameTag-m8r81H>*:nth-child(1)').innerHTML + document.querySelector('.nameTag-m8r81H>*:nth-child(2)').innerHTML
+                            const el = document.createElement('textarea');
+                            el.value = str;
+                            el.setAttribute('readonly', '');
+                            el.style.position = 'absolute';
+                            el.style.left = '-9999px';
+                            document.body.appendChild(el);
+                            el.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(el);
+                        }
+                    })
                 }
             }
         }
     };
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
+    // CSS
+    document.querySelector('head').innerHTML += `<style id="CopyUsernamesCSS">
+.nameTag-m8r81H:active>*:nth-child(1),
+.nameTag-m8r81H:active>*:nth-child(2){
+    filter: brightness(.85);
+}
+.nameTag-m8r81H>*:nth-child(1),
+.nameTag-m8r81H>*:nth-child(2){
+    cursor: pointer;
+}</style>`
 })();
