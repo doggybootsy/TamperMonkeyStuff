@@ -36,4 +36,14 @@
     };
     const observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
+    // CSS
+    document.querySelector('head').innerHTML += `<style id="CopyUsernamesCSS">
+.nameTag-m8r81H:active>*:nth-child(1),
+.nameTag-m8r81H:active>*:nth-child(2){
+    filter: brightness(.85);
+}
+.nameTag-m8r81H>*:nth-child(1),
+.nameTag-m8r81H>*:nth-child(2){
+    cursor: pointer;
+}</style>`
 })();
